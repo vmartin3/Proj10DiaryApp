@@ -7,14 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76380A5F1EB8E4B4003D1CAD /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76380A5E1EB8E4B4003D1CAD /* DetailController.swift */; };
+		76380A611EB8F833003D1CAD /* DiaryPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76380A601EB8F833003D1CAD /* DiaryPost.swift */; };
+		76380A631EB8F966003D1CAD /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76380A621EB8F966003D1CAD /* Mood.swift */; };
+		76380A651EB8FA47003D1CAD /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76380A641EB8FA47003D1CAD /* CoreDataController.swift */; };
 		76A99A301EB7C0BF0009B56B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A99A2F1EB7C0BF0009B56B /* AppDelegate.swift */; };
-		76A99A321EB7C0BF0009B56B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A99A311EB7C0BF0009B56B /* ViewController.swift */; };
 		76A99A351EB7C0BF0009B56B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76A99A331EB7C0BF0009B56B /* Main.storyboard */; };
 		76A99A381EB7C0BF0009B56B /* Proj10DiaryApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76A99A361EB7C0BF0009B56B /* Proj10DiaryApp.xcdatamodeld */; };
 		76A99A3A1EB7C0BF0009B56B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76A99A391EB7C0BF0009B56B /* Assets.xcassets */; };
 		76A99A3D1EB7C0BF0009B56B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76A99A3B1EB7C0BF0009B56B /* LaunchScreen.storyboard */; };
 		76A99A481EB7C0BF0009B56B /* Proj10DiaryAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A99A471EB7C0BF0009B56B /* Proj10DiaryAppTests.swift */; };
 		76A99A531EB7C0BF0009B56B /* Proj10DiaryAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A99A521EB7C0BF0009B56B /* Proj10DiaryAppUITests.swift */; };
+		76A99A611EB7CEFF0009B56B /* DiaryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A99A601EB7CEFF0009B56B /* DiaryTableView.swift */; };
+		76A99A631EB7D1EB0009B56B /* DiaryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A99A621EB7D1EB0009B56B /* DiaryTableCell.swift */; };
+		76CAF30F1EBABCA200596EFE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF30E1EBABCA200596EFE /* LocationManager.swift */; };
+		76CAF3121EBB6FD400596EFE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CAF3111EBB6FD400596EFE /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		76380A5E1EB8E4B4003D1CAD /* DetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
+		76380A601EB8F833003D1CAD /* DiaryPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryPost.swift; sourceTree = "<group>"; };
+		76380A621EB8F966003D1CAD /* Mood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
+		76380A641EB8FA47003D1CAD /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		76A99A2C1EB7C0BF0009B56B /* Proj10DiaryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Proj10DiaryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76A99A2F1EB7C0BF0009B56B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		76A99A311EB7C0BF0009B56B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		76A99A341EB7C0BF0009B56B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		76A99A371EB7C0BF0009B56B /* Proj10DiaryApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Proj10DiaryApp.xcdatamodel; sourceTree = "<group>"; };
 		76A99A391EB7C0BF0009B56B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +59,10 @@
 		76A99A4E1EB7C0BF0009B56B /* Proj10DiaryAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Proj10DiaryAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		76A99A521EB7C0BF0009B56B /* Proj10DiaryAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Proj10DiaryAppUITests.swift; sourceTree = "<group>"; };
 		76A99A541EB7C0BF0009B56B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76A99A601EB7CEFF0009B56B /* DiaryTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryTableView.swift; sourceTree = "<group>"; };
+		76A99A621EB7D1EB0009B56B /* DiaryTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryTableCell.swift; sourceTree = "<group>"; };
+		76CAF30E1EBABCA200596EFE /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		76CAF3111EBB6FD400596EFE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76CAF3121EBB6FD400596EFE /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +98,7 @@
 				76A99A461EB7C0BF0009B56B /* Proj10DiaryAppTests */,
 				76A99A511EB7C0BF0009B56B /* Proj10DiaryAppUITests */,
 				76A99A2D1EB7C0BF0009B56B /* Products */,
+				76CAF3101EBB6FD400596EFE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,9 +115,15 @@
 		76A99A2E1EB7C0BF0009B56B /* Proj10DiaryApp */ = {
 			isa = PBXGroup;
 			children = (
-				76A99A2F1EB7C0BF0009B56B /* AppDelegate.swift */,
-				76A99A311EB7C0BF0009B56B /* ViewController.swift */,
 				76A99A331EB7C0BF0009B56B /* Main.storyboard */,
+				76380A601EB8F833003D1CAD /* DiaryPost.swift */,
+				76380A641EB8FA47003D1CAD /* CoreDataController.swift */,
+				76380A621EB8F966003D1CAD /* Mood.swift */,
+				76A99A621EB7D1EB0009B56B /* DiaryTableCell.swift */,
+				76A99A601EB7CEFF0009B56B /* DiaryTableView.swift */,
+				76380A5E1EB8E4B4003D1CAD /* DetailController.swift */,
+				76CAF30E1EBABCA200596EFE /* LocationManager.swift */,
+				76A99A2F1EB7C0BF0009B56B /* AppDelegate.swift */,
 				76A99A391EB7C0BF0009B56B /* Assets.xcassets */,
 				76A99A3B1EB7C0BF0009B56B /* LaunchScreen.storyboard */,
 				76A99A3E1EB7C0BF0009B56B /* Info.plist */,
@@ -126,6 +148,14 @@
 				76A99A541EB7C0BF0009B56B /* Info.plist */,
 			);
 			path = Proj10DiaryAppUITests;
+			sourceTree = "<group>";
+		};
+		76CAF3101EBB6FD400596EFE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				76CAF3111EBB6FD400596EFE /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +292,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76A99A321EB7C0BF0009B56B /* ViewController.swift in Sources */,
 				76A99A301EB7C0BF0009B56B /* AppDelegate.swift in Sources */,
+				76380A611EB8F833003D1CAD /* DiaryPost.swift in Sources */,
+				76A99A631EB7D1EB0009B56B /* DiaryTableCell.swift in Sources */,
+				76380A631EB8F966003D1CAD /* Mood.swift in Sources */,
+				76380A651EB8FA47003D1CAD /* CoreDataController.swift in Sources */,
 				76A99A381EB7C0BF0009B56B /* Proj10DiaryApp.xcdatamodeld in Sources */,
+				76380A5F1EB8E4B4003D1CAD /* DetailController.swift in Sources */,
+				76A99A611EB7CEFF0009B56B /* DiaryTableView.swift in Sources */,
+				76CAF30F1EBABCA200596EFE /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +543,7 @@
 				76A99A591EB7C0BF0009B56B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		76A99A5A1EB7C0BF0009B56B /* Build configuration list for PBXNativeTarget "Proj10DiaryAppTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +552,7 @@
 				76A99A5C1EB7C0BF0009B56B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		76A99A5D1EB7C0BF0009B56B /* Build configuration list for PBXNativeTarget "Proj10DiaryAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +561,7 @@
 				76A99A5F1EB7C0BF0009B56B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
