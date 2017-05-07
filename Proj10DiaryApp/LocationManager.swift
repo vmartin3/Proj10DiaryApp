@@ -13,8 +13,6 @@ import MapKit
 class LocationManager: CLLocationManager, CLLocationManagerDelegate {
     static let sharedLocationInstance = LocationManager()
     var locationManager:CLLocationManager!
-    var locations = [CLLocation]()
-    var locationMessage: UIAlertController?
     var street: String?
     var city: String?
     var state: String?
@@ -35,53 +33,29 @@ class LocationManager: CLLocationManager, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         CLGeocoder().reverseGeocodeLocation(manager.location!) { (placemarks, error) in
-           
-            self.locationManager.stopUpdatingLocation()
-            self.locationManager.stopUpdatingHeading()
+        
+        self.locationManager.stopUpdatingLocation()
+        self.locationManager.stopUpdatingHeading()
             
-            if error != nil {
-                
-                print(error ?? "Unknown Error")
-                
-            } else {
-            
+        if error != nil {
+            print(error ?? "Unknown Error")
+        } else {
             // Place details
             var placeMark: CLPlacemark!
             placeMark = placemarks?[0]
-            
-            // Address dictionary
-            //print("\(placeMark.addressDictionary) \n")
-            
-            // Location name
-            if let locationName = placeMark.addressDictionary!["Name"] as? String {
-                print("\(locationName) \n")
-            }
-            
-            // Street address
+ 
+            // Get Street address
             if let street = placeMark.addressDictionary!["Thoroughfare"] as? String {
                 self.street = street
             }
-            
-            // City
+            // Get City
             if let city = placeMark.addressDictionary!["City"] as? String {
                 self.city = city
             }
-            
-            // Zip code
-            if let zip = placeMark.addressDictionary!["ZIP"] as? String {
-                print("\(zip) \n")
-            }
-                
+            // Get State
             if let state = placeMark.addressDictionary!["State"] as? String {
                     self.state = state
-                }
-            
-            // Country
-            if let country = placeMark.addressDictionary!["Country"] as? String {
-                print("\(country) \n")
             }
-                
-                //self.locationMessage = self.showLocation()
             }
         }
 }

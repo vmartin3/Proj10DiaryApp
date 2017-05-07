@@ -12,6 +12,7 @@ class CoreDataController: NSObject {
 
     static let sharedInstance = CoreDataController()
     
+    //Enum for the Core Data entity keys
     enum DiaryKeys:String {
         case post = "post"
         case date = "date"
@@ -19,20 +20,23 @@ class CoreDataController: NSObject {
         case location = "location"
     }
     
+    //Creates managed object context
     var managedObjectContext: NSManagedObjectContext = {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate?.persistentContainer.viewContext
         return managedContext!
     }()
     
+    //Saves a DiaryPost to CoreData
     func save(postText: String, postDate: String, imageData: Data, location: String) {
-        let entity = NSEntityDescription.entity(forEntityName: "DiaryPost", in: managedObjectContext)!
+        let entity = NSEntityDescription.entity(forEntityName: DiaryPost.identifier, in: managedObjectContext)!
         let diaryEntry = NSManagedObject(entity: entity, insertInto: managedObjectContext)
-        diaryEntry.setValue(postText, forKeyPath: "post")
-        diaryEntry.setValue(postDate, forKey: "date")
-        diaryEntry.setValue(imageData, forKey: "mood")
-        diaryEntry.setValue(location, forKey: "location")
+        diaryEntry.setValue(postText, forKey: DiaryKeys .post.rawValue)
+        diaryEntry.setValue(postDate, forKey: DiaryKeys .date.rawValue)
+        diaryEntry.setValue(imageData, forKey: DiaryKeys .mood.rawValue)
+        diaryEntry.setValue(location, forKey: DiaryKeys .location.rawValue)
         
+        //Actually save the object and append diary item to the array
         do {
             try managedObjectContext.save()
             DiaryTableView.diaryPosts.append(diaryEntry)
@@ -41,23 +45,11 @@ class CoreDataController: NSObject {
         }
     }
     
+    //Grabs the saved DiaryPost Data
     func fetch(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DiaryPost")
-        
         do {
-            
-            DiaryTableView.diaryPosts = try managedContext.fetch(fetchRequest)
-//            for managedObject in DiaryTableView.diaryPosts
-//            {
-//                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
-//                managedContext.delete(managedObjectData)
-//                DiaryTableView.diaryPosts.removeAll()
-//                try managedObjectContext.save()
-//            }
-            try print(CoreDataController.sharedInstance.managedObjectContext.count(for: fetchRequest))
+            DiaryTableView.diaryPosts = try managedObjectContext.fetch(fetchRequest)
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
