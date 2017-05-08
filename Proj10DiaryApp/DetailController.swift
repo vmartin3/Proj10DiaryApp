@@ -36,6 +36,7 @@ class DetailController: UIViewController {
     //Load todays date when view loads
     override func viewDidLoad() {
         super.viewDidLoad()
+        reset()
         
         let date = Date()
         let formatter = DateFormatter()
@@ -47,8 +48,9 @@ class DetailController: UIViewController {
         headerDateText.text = modifiedDate
         
         if editMode == true{
-            whatHappenedTodayLabel.text = "Tap To Edit: \(diaryText!)"
             setupEditMode()
+        } else {
+            reset()
         }
         
         self.detailTableView.delegate = homepage!
@@ -62,6 +64,7 @@ class DetailController: UIViewController {
     }
     
     @IBAction func savePressed(_ sender: AnyObject) {
+        
         if editMode == true {
               CoreDataController.sharedInstance.updatePost(index: indexPath!, newPost: diaryText!)
         } else {
@@ -71,6 +74,7 @@ class DetailController: UIViewController {
         }
         
         showAlert(title: "Save Succesful", message: "We have succesfully saved your diary entry", action: "Okay")
+        editMode = false
         homepage?.tableView.reloadData()
     }
     
@@ -125,6 +129,8 @@ class DetailController: UIViewController {
                                         
                                         if editMode == true {
                                             self.whatHappenedTodayLabel.text = "Your Edit Has Been Recorded!"
+                                        } else {
+                                            self.whatHappenedTodayLabel.text = self.diaryText
                                         }
         }
         
@@ -172,11 +178,21 @@ class DetailController: UIViewController {
     
     //Sets up the detail view accordingly if the user is making an update rather than a new post
     func setupEditMode(){
+        whatHappenedTodayLabel.text = "Tap To Edit: \(diaryText!)"
         detailTableView.isUserInteractionEnabled = false
         badMoodButton.isEnabled = false
         averageMoodButton.isEnabled = false
         goodMoodButton.isEnabled = false
         addLocationButton.isEnabled = false
+    }
+    
+    func reset(){
+        whatHappenedTodayLabel.text = "What Happened Today?"
+        detailTableView.isUserInteractionEnabled = true
+        badMoodButton.isEnabled = true
+        averageMoodButton.isEnabled = true
+        goodMoodButton.isEnabled = true
+        addLocationButton.isEnabled = true
     }
     
     
