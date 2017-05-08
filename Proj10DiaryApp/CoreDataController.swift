@@ -55,4 +55,15 @@ class CoreDataController: NSObject {
         }
     }
     
+    //Update and Edits the text of a perviously saved entry
+    func updatePost(index: Int, newPost: String){
+        DiaryTableView.diaryPosts[index].setValue(newPost, forKey: DiaryKeys .post.rawValue)
+        do{
+            try managedObjectContext.save()
+        } catch let error as NSError{
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        
+    }
+    
 }

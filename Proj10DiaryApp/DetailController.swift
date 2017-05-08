@@ -12,7 +12,6 @@ import CoreLocation
 
 class DetailController: UIViewController {
     
-    @IBOutlet weak var viewOnlyText: UILabel!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var diaryInputView: UIView!
@@ -23,7 +22,6 @@ class DetailController: UIViewController {
     @IBOutlet weak var todaysDateLabel: UILabel!
     @IBOutlet weak var goodMoodButton: UIButton!
     @IBOutlet weak var averageMoodButton: UIButton!
-    
     @IBOutlet weak var whatHappenedTodayLabel: UILabel!
     
     var homepage: DiaryTableView?
@@ -32,6 +30,8 @@ class DetailController: UIViewController {
     var fullDate:String?
     var diaryText:String?
     var location:String?
+    
+    var indexPath:Int?
     
     //Load todays date when view loads
     override func viewDidLoad() {
@@ -46,6 +46,11 @@ class DetailController: UIViewController {
         var modifiedDate = formatter.string(from: date)
         headerDateText.text = modifiedDate
         
+        if editMode == true{
+            whatHappenedTodayLabel.text = "Tap To Edit: \(diaryText!)"
+            setupEditMode()
+        }
+        
         self.detailTableView.delegate = homepage!
         self.detailTableView.dataSource = homepage
         self.detailTableView.reloadData()
@@ -57,8 +62,12 @@ class DetailController: UIViewController {
     }
     
     @IBAction func savePressed(_ sender: AnyObject) {
-        checkForNil {
-            CoreDataController.sharedInstance.save(postText: diaryText!, postDate: fullDate!, imageData: imageData!, location: self.location!)
+        if editMode == true {
+              CoreDataController.sharedInstance.updatePost(index: indexPath!, newPost: diaryText!)
+        } else {
+            checkForNil {
+                CoreDataController.sharedInstance.save(postText: diaryText!, postDate: fullDate!, imageData: imageData!, location: self.location!)
+            }
         }
         
         showAlert(title: "Save Succesful", message: "We have succesfully saved your diary entry", action: "Okay")
@@ -89,7 +98,7 @@ class DetailController: UIViewController {
     @IBAction func addLocationPressed(_ sender: AnyObject) {
         LocationManager.sharedLocationInstance.determineMyCurrentLocation()
         
-        //1 Second delay to grab location before alert box shows up to prevent nil values
+        //2 Second delay to grab location before alert box shows up to prevent nil values
         let when = DispatchTime.now() + 2.0
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.location = "\(LocationManager.sharedLocationInstance.street!) - \(LocationManager.sharedLocationInstance.city!), \(LocationManager.sharedLocationInstance.state!)"
@@ -106,7 +115,6 @@ class DetailController: UIViewController {
                                        style: .default) {
                                         [unowned self] action in
                                         
-                                        
                                         guard let textField = alert.textFields?.first,
                                                 let postText = textField.text else {
                                                 return
@@ -114,6 +122,10 @@ class DetailController: UIViewController {
                                         self.diaryText = postText
                                         self.whatHappenedTodayLabel.textColor = UIColor (colorLiteralRed: 51/255, green: 102/255, blue: 0/255, alpha: 1)
                                         self.diaryEntryButton.isEnabled = false
+                                        
+                                        if editMode == true {
+                                            self.whatHappenedTodayLabel.text = "Your Edit Has Been Recorded!"
+                                        }
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -137,11 +149,13 @@ class DetailController: UIViewController {
         self.present(alert, animated: true)
     }
     
+    //Turns image into data
     func prepareImageForSaving(iconNamed: String){
         moodImage = UIImage (named: iconNamed)
         imageData = UIImagePNGRepresentation(moodImage!)
     }
     
+    //Checks for any nil values before post is saved
     func checkForNil(completion: ()->Void){
         if location == nil {
             location = "Location not given"
@@ -154,6 +168,15 @@ class DetailController: UIViewController {
             return
         }
         completion()
+    }
+    
+    //Sets up the detail view accordingly if the user is making an update rather than a new post
+    func setupEditMode(){
+        detailTableView.isUserInteractionEnabled = false
+        badMoodButton.isEnabled = false
+        averageMoodButton.isEnabled = false
+        goodMoodButton.isEnabled = false
+        addLocationButton.isEnabled = false
     }
     
     
