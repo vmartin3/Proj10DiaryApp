@@ -100,12 +100,8 @@ class DetailController: UIViewController {
     }
     
     @IBAction func addLocationPressed(_ sender: AnyObject) {
-        LocationManager.sharedLocationInstance.determineMyCurrentLocation()
-        
-        //2 Second delay to grab location before alert box shows up to prevent nil values
-        let when = DispatchTime.now() + 2.0
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            self.location = "\(LocationManager.sharedLocationInstance.street!) - \(LocationManager.sharedLocationInstance.city!), \(LocationManager.sharedLocationInstance.state!)"
+        LocationManager.sharedLocationInstance.determineMyCurrentLocation { (locationString) in
+            self.location = locationString
             self.showAlert(title: "Your Location", message: "Your current location is set as: \(self.location!)", action: "Okay")
         }
     }

@@ -17,9 +17,11 @@ class LocationManager: CLLocationManager, CLLocationManagerDelegate {
     var city: String?
     var state: String?
     
+    private var completion: ((String) -> Void)?
     
     
-    func determineMyCurrentLocation(){
+    func determineMyCurrentLocation(completion: @escaping ((String) -> Void)){
+        self.completion = completion
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -27,7 +29,6 @@ class LocationManager: CLLocationManager, CLLocationManagerDelegate {
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
-            locationManager.startUpdatingHeading()
         }
     }
     
@@ -35,7 +36,6 @@ class LocationManager: CLLocationManager, CLLocationManagerDelegate {
         CLGeocoder().reverseGeocodeLocation(manager.location!) { (placemarks, error) in
         
         self.locationManager.stopUpdatingLocation()
-        self.locationManager.stopUpdatingHeading()
             
         if error != nil {
             print(error ?? "Unknown Error")
@@ -56,9 +56,16 @@ class LocationManager: CLLocationManager, CLLocationManagerDelegate {
             if let state = placeMark.addressDictionary!["State"] as? String {
                     self.state = state
             }
+            
+            self.completion!("\(self.street!) - \(self.city!), \(self.state!)")
+            
             }
         }
+        
+        
 }
+    
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error while updating location \(error.localizedDescription)")
     }
