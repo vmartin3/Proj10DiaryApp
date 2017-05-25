@@ -130,6 +130,7 @@ class DiaryTableView: UITableViewController {
         }
     }
     
+    
     //If cell is selected on that means the user wants to edit that post
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! DiaryTableCell

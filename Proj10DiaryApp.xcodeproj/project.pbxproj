@@ -686,6 +686,7 @@
 				76BDE3271EC0EA1600B49EC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
